@@ -10,3 +10,10 @@ Set the `RECEIVE_HOST` envvar to the Docker host you're running on
 ```
 docker-compose up --build
 ```
+
+This branch will work, because it's using HAProxy on the host network which
+has an configuration pointing to static Docker bridge IPs on a pre-defined
+network. This pre-defined network allows the host-bound HAProxy instance
+to set the `X-Forwarded-For` header to the correct client IP, before the
+Docker bridge NATs it.
+

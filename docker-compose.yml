@@ -1,10 +1,29 @@
 version: "2"
+networks:
+  bridge:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.22.0.1/16
+          gateway: 172.22.0.1
 services:
   sender:
     build: ./sender
     environment:
       RECEIVE_HOST: 192.168.1.164
+    networks:
+      bridge:
+        ipv4_address: 172.22.0.10
   receiver:
     build: ./receiver
+    networks:
+      bridge:
+        ipv4_address: 172.22.0.20
+  haproxy:
+    image: haproxy:1.8
+    network_mode: "host"
+    volumes:
+      - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
     ports:
       - "80:80"

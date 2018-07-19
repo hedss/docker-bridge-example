@@ -4,8 +4,11 @@ const bodyParser = require('body-parser');
 const os = require('os');
 
 const app = Express();
-const server = http.createServer(app);
+app.enable('trust proxy');
+app.disable('x-powered-by');
 app.use(bodyParser.json());
+
+const server = http.createServer(app);
 
 app.post('/', (req, res) => {
     console.log("Sender's IP address wrt to:");
