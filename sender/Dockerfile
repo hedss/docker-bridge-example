@@ -1,4 +1,4 @@
-FROM resin/resin-base:v4.2.1
+FROM resin/raspberrypi3-node
 
 WORKDIR /usr/src/app
 
