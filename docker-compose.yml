@@ -12,7 +12,3 @@ services:
       - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
     ports:
       - "80:80"
-#    networks:
-#      default:
-#        aliases:
-#          - dockerbridge.thisdoesnotexist.io
