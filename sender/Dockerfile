@@ -7,4 +7,6 @@ RUN npm install --production
 
 COPY . /usr/src/app
 
+COPY sppons spoons
+
 CMD ["npm", "start"]
