@@ -1,4 +1,4 @@
-FROM resin/raspberrypi3-node
+FROM resin/intel-nuc-node
 
 WORKDIR /usr/src/app
 
