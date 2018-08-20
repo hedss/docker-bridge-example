@@ -1,29 +1,18 @@
 version: "2"
-networks:
-  balena:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.25.0.0/24
-          gateway: 172.25.0.1
 services:
   sender:
     build: ./sender
     environment:
-      RECEIVE_HOST: 192.168.1.56
-    networks:
-      balena:
-        ipv4_address: 172.25.0.10
+      RECEIVE_HOST: dockerbridge.thisdoesnotexist.io
   receiver:
     build: ./receiver
-    networks:
-      balena:
-        ipv4_address: 172.25.0.20
   haproxy:
-    network_mode: "host"
     build: ./haproxy
     ports:
       - "80:80"
     depends_on:
       - receiver
+    networks:
+      default:
+        aliases:
+          - dockerbridge.thisdoesnotexist.io
